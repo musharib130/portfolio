@@ -1,6 +1,7 @@
 "use client"
 import { useState, Fragment } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import "./tabs.css"
 
 interface TabsProps {
   tabs: string[]
@@ -8,24 +9,21 @@ interface TabsProps {
 }
 
 export default function Tabs({ tabs, children }: TabsProps) {
-  const [active, setActive] = useState<number | null>(null)
+  const [active, setActive] = useState<number>(0)
 
   const toggleTab = (index: number) => {
-    setActive(active === index ? null : index)
+    setActive(index)
   }
 
   return (
-    <div className="flex flex-row juststify-start align-stretch h-full w-full">
+    <div className="scroll-tab-container">
       {tabs.map((tab, index) => (
         <Fragment key={index}>
           <div
             onClick={() => toggleTab(index)}
-            className={`border border-white bg-black cursor-pointer
-            transition-all duration-300
-            flex items-start
-            ${active === null ? "flex-1" : "flex-none"}`}>
+            className={`scroll-tab ${active === index ? "active" : ""}`}>
             <p
-              className={`text-white vertical-text p-4 font-bold text-xl`}
+              className={`vertical-text`}
             >
               {tab}
             </p>
@@ -34,11 +32,11 @@ export default function Tabs({ tabs, children }: TabsProps) {
           {active === index && (
             <motion.div
               key={active}   // IMPORTANT: makes it a new component
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "100%", opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
+              initial={{ width: 0, opacity: 0.1, padding: 0 }}
+              animate={{ width: "100%", opacity: 1, padding: "1rem" }}
+              exit={{ width: 0, opacity: 0.1, padding: 0 }}
               transition={{ duration: 0.35 }}
-              className="overflow-hidden border border-white"
+              className="overflow-hidden paper-texture rounded-lg"
             >
               {children}
             </motion.div>
