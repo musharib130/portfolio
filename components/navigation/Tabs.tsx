@@ -1,18 +1,28 @@
 "use client"
-import { useState, Fragment } from "react"
+import { useState, Fragment, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useRouter, usePathname } from "next/navigation"
+
+import { tabs } from "./constants"
+
 import "./tabs.css"
 
 interface TabsProps {
-  tabs: string[]
   children: React.ReactNode
 }
 
-export default function Tabs({ tabs, children }: TabsProps) {
-  const [active, setActive] = useState<number>(0)
+export default function Tabs({ children }: TabsProps) {
+  const [active, setActive] = useState<string>('/')
 
-  const toggleTab = (index: number) => {
-    setActive(index)
+  const router = useRouter()
+  const pathname =  usePathname()
+
+  useEffect(() => {
+    setActive(pathname)
+  }, [pathname])
+
+  const toggleTab = async (link: string) => {
+    router.push(link)
   }
 
   return (
@@ -20,16 +30,16 @@ export default function Tabs({ tabs, children }: TabsProps) {
       {tabs.map((tab, index) => (
         <Fragment key={index}>
           <div
-            onClick={() => toggleTab(index)}
-            className={`scroll-tab ${active === index ? "active" : ""}`}>
+            onClick={() => toggleTab(tab.link)}
+            className={`scroll-tab ${active === tab.link ? "active" : ""}`}>
             <p
               className={`vertical-text`}
             >
-              {tab}
+              {tab.text}
             </p>
           </div>
           <AnimatePresence mode="wait">
-          {active === index && (
+          {active === tab.link && (
             <motion.div
               key={active}   // IMPORTANT: makes it a new component
               initial={{ width: 0, opacity: 0.1, padding: 0 }}

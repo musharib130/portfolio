@@ -5,12 +5,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tabItems = ['Home', 'About', 'Contact']
-
-
   return (
     <div className="h-full w-full">
-        <Tabs tabs={tabItems} children={children} />
+        <Tabs children={children} />
     </div>
   );
 }
