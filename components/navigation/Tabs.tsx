@@ -50,7 +50,7 @@ export default function Tabs({ children }: TabsProps) {
             <motion.div
               key={active} // IMPORTANT: makes it a new component
               initial={isMobile ? { height: 0, padding: 0 } : { width: 0, padding: 0 }}
-              animate={isMobile ? { height: "100%", padding: "1rem" } : { width: "100%", padding: "1rem" }}
+              animate={isMobile ? { height: "100%", width: "100%", padding: "1rem" } : { width: "100%", padding: "1rem" }}
               exit={isMobile ? { height: 0, paddingInline: 0 } : { width: 0, paddingInline: 0 }}
               transition={{ duration: 0.35 }}
               className="overflow-auto paper-texture rounded-lg"

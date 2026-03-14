@@ -8,6 +8,7 @@ export default function Contact() {
     email: "musharibayub@gmail.com",
     phone: "+92-300-7709253",
     linkedIn: "https://www.linkedin.com/in/musharib-ayub/",
+    github: "https://github.com/musharibayub",
   };
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -88,6 +89,9 @@ export default function Contact() {
         </p>
         <p>
           <strong>LinkedIn:</strong><a href={contactDetails.linkedIn} target="_blank"> {contactDetails.linkedIn}</a> 
+        </p>
+        <p>
+          <strong>GitHub:</strong><a href={contactDetails.github} target="_blank"> {contactDetails.github}</a> 
         </p>
       </div>
     </div>
