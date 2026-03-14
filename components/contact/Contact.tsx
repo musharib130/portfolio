@@ -8,7 +8,7 @@ export default function Contact() {
     email: "musharibayub@gmail.com",
     phone: "+92-300-7709253",
     linkedIn: "https://www.linkedin.com/in/musharib-ayub/",
-    github: "https://github.com/musharibayub",
+    github: "https://github.com/musharib130",
   };
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
