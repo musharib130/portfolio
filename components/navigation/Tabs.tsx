@@ -25,6 +25,15 @@ export default function Tabs({ children }: TabsProps) {
     router.push(link)
   }
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div className="scroll-tab-container">
       {tabs.map((tab, index) => (
@@ -32,21 +41,19 @@ export default function Tabs({ children }: TabsProps) {
           <div
             onClick={() => toggleTab(tab.link)}
             className={`scroll-tab ${active === tab.link ? "active" : ""}`}>
-            <p
-              className={`vertical-text`}
-            >
+            <p className={`vertical-text`}>
               {tab.text}
             </p>
           </div>
           <AnimatePresence mode="wait">
           {active === tab.link && (
             <motion.div
-              key={active}   // IMPORTANT: makes it a new component
-              initial={{ width: 0, padding: 0 }}
-              animate={{ width: "100%", padding: "1rem" }}
-              exit={{ width: 0, padding: 0 }}
+              key={active} // IMPORTANT: makes it a new component
+              initial={isMobile ? { height: 0, padding: 0 } : { width: 0, padding: 0 }}
+              animate={isMobile ? { height: "100%", padding: "1rem" } : { width: "100%", padding: "1rem" }}
+              exit={isMobile ? { height: 0, paddingInline: 0 } : { width: 0, paddingInline: 0 }}
               transition={{ duration: 0.35 }}
-              className="overflow-hidden paper-texture rounded-lg"
+              className="overflow-auto paper-texture rounded-lg"
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -58,6 +65,7 @@ export default function Tabs({ children }: TabsProps) {
                   opacity: 0,
                   transition: { duration: 0 }  // instant on close
                 }}
+                className="h-full"
               >
                 {children}
               </motion.div>

@@ -100,3 +100,16 @@
     box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
     transform: rotate(0deg);
 }
+
+
+@media (max-width: 768px) {
+    .scroll-tab-container {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .vertical-text {
+        writing-mode: horizontal-tb;
+    }
+}

@@ -1,6 +1,6 @@
 const tabs = [
     { text: 'Home', link: '/' },
-    { text: 'About', link: '/about' },
+    { text: 'Projects', link: '/projects' },
     { text: 'Contact', link: '/contact' },  
     // { text: 'Blog', link: '/blog' },
 ]
