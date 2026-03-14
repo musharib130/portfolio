@@ -42,13 +42,25 @@ export default function Tabs({ children }: TabsProps) {
           {active === tab.link && (
             <motion.div
               key={active}   // IMPORTANT: makes it a new component
-              initial={{ width: 0, opacity: 0.1, padding: 0 }}
-              animate={{ width: "100%", opacity: 1, padding: "1rem" }}
-              exit={{ width: 0, opacity: 0.1, padding: 0 }}
+              initial={{ width: 0, padding: 0 }}
+              animate={{ width: "100%", padding: "1rem" }}
+              exit={{ width: 0, padding: 0 }}
               transition={{ duration: 0.35 }}
               className="overflow-hidden paper-texture rounded-lg"
             >
-              {children}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  transition: { delay: 0.30, duration: 0.15 }  // delayed on open
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0 }  // instant on close
+                }}
+              >
+                {children}
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
