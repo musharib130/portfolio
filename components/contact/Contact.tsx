@@ -1,15 +1,29 @@
 "use client";
 
 import { useState } from "react";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 export default function Contact() {
   // Contact details (fill in your info)
-  const contactDetails = {
-    email: "musharibayub@gmail.com",
-    phone: "+92-300-7709253",
-    linkedIn: "https://www.linkedin.com/in/musharib-ayub/",
-    github: "https://github.com/musharib130",
-  };
+  const contactDetails = [
+    {
+      icon: <MdEmail className="h-10 w-10" />, 
+      value: "mailto:musharibayub@gmail.com"
+    },
+    {
+      icon: <FaWhatsapp className="h-10 w-10" />, 
+      value: "https://wa.me/923007709253?text=Hi%20Musharib%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect."
+    },
+    {
+      icon: <FaLinkedin className="h-10 w-10" />, 
+      value: "https://www.linkedin.com/in/musharib-ayub/"
+    },
+    {
+      icon: <FaGithub className="h-10 w-10" />, 
+      value: "https://github.com/musharib130"
+    }
+  ];
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
@@ -25,11 +39,33 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-screen overflow-y-auto">
-      <h1 className="text-3xl font-bold mb-6">Contact Me</h1>
+    <div 
+      style={{ paddingTop: '32px' }}
+      className="h-full w-full flex flex-col items-center justify-start gap-8">
+      <h1 className="text-3xl font-bold">Contact Me</h1>
+      
+      {/* Contact Details */}
+      <div 
+        style={{
+          maxWidth: '100%'
+        }}
+        className="flex flex-row justify-center align-center gap-8 bg-yellow-50 shadow-md rounded-lg p-6 w-2xl">
+        {
+          contactDetails.map((detail, index) => (
+            <a key={index} href={detail.value} target="_blank" rel="noopener noreferrer" className="flex items-center">
+              {detail.icon}
+            </a>
+          ))
+        }
+
+      </div>
 
       {/* Contact Form */}
-      <div className="bg-yellow-50 shadow-md rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+      <div 
+        style={{
+          maxWidth: '100%'
+        }}
+        className="bg-yellow-50 shadow-md rounded-lg p-6 mb-8 w-2xl grow shrink overflow-auto">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <label className="flex flex-col">
             <span className="font-semibold">Name</span>
@@ -78,22 +114,6 @@ export default function Contact() {
         </form>
       </div>
 
-      {/* Contact Details */}
-      <div className="bg-yellow-50 shadow-md rounded-lg p-6 max-w-2xl mx-auto">
-        <h2 className="text-xl font-semibold mb-4">My Contact Details</h2>
-        <p>
-          <strong>Email:</strong> {contactDetails.email}
-        </p>
-        <p>
-          <strong>Phone:</strong> {contactDetails.phone}
-        </p>
-        <p>
-          <strong>LinkedIn:</strong><a href={contactDetails.linkedIn} target="_blank"> {contactDetails.linkedIn}</a> 
-        </p>
-        <p>
-          <strong>GitHub:</strong><a href={contactDetails.github} target="_blank"> {contactDetails.github}</a> 
-        </p>
-      </div>
     </div>
   );
 }
