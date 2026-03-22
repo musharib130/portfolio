@@ -42,7 +42,7 @@ export default function Contact() {
     <div 
       style={{ paddingTop: '32px' }}
       className="h-full w-full flex flex-col items-center justify-start gap-8">
-      <h1 className="text-3xl font-bold">Contact Me</h1>
+      <h1 className="text-3xl font-bold">Get in Touch</h1>
       
       {/* Contact Details */}
       <div 
@@ -61,7 +61,8 @@ export default function Contact() {
       </div>
 
       {/* Contact Form */}
-      <div 
+      {/* Hidden for now */}
+      {/* <div 
         style={{
           maxWidth: '100%'
         }}
@@ -112,7 +113,7 @@ export default function Contact() {
             Send Message
           </button>
         </form>
-      </div>
+      </div> */}
 
     </div>
   );
