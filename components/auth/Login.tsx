@@ -1,4 +1,6 @@
-import { p } from "framer-motion/client";
+"use client";
+
+import { signIn } from "next-auth/react"
 import { useState } from "react";
 
 export default function Login() {
@@ -7,9 +9,13 @@ export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("email: ", email, "password: ", password)
+        const result = await signIn("credentials", {
+            email,
+            password,
+            callbackUrl: "/dashboard"
+        });
     }
 
     return (
