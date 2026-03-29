@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { getConfirmation } from "@/components/confirmation-dialog/confirmation-dialog.store";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 
 const menuItems = [
 	{ label: "Dashboard", href: "/dashboard" },
@@ -16,6 +17,8 @@ export default function DashboardShellLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+    const { status } = useAuthGuard();
+
 	const pathname = usePathname();
 
     const handleLogout = async () => {
@@ -24,6 +27,10 @@ export default function DashboardShellLayout({
         if (confirmed) {
             signOut({ callbackUrl: "/auth" });
         }
+    }
+
+    if (status === "loading" || status === "unauthenticated") {
+        return null
     }
 
 	return (
@@ -59,7 +66,7 @@ export default function DashboardShellLayout({
 					<button
 						type="button"
 						onClick={handleLogout}
-						className="mt-4 rounded-md border border-[#8a2f2f] bg-[#b94949] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#9e3f3f]"
+						className="mt-4 rounded-md border border-[#8a2f2f] bg-[#b94949] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#9e3f3f] cursor-pointer"
 					>
 						Logout
 					</button>
