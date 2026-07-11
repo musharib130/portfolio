@@ -16,20 +16,21 @@ export const authOptions: NextAuthOptions = {
         try {
 
           console.log("Attempting to authorize user with email:", credentials?.email, credentials?.password);
-  
-          await connect()
-  
-          const user = await User.findOne({ email: credentials?.email });
-  
-          console.log(user)
-  
-          if (user && user.password === credentials?.password) {
-            return {
-              id: user.id,
-              name: user.name,
-            }
-          }
-  
+
+          // MongoDB connection disabled - uncomment to re-enable
+          // await connect()
+
+          // const user = await User.findOne({ email: credentials?.email });
+
+          // console.log(user)
+
+          // if (user && user.password === credentials?.password) {
+          //   return {
+          //     id: user.id,
+          //     name: user.name,
+          //   }
+          // }
+
           return null
         } catch(e) {
           console.log(`the error is ${e}`)
