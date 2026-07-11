@@ -16,7 +16,12 @@ async function connect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(uri).then((mongoose) => mongoose);
+    cached.promise = mongoose.connect(uri)
+      .then((mongoose) => mongoose)
+      .catch((err) => {
+        cached.promise = null; // allow retry
+        throw err;
+      });
   }
   cached.conn = await cached.promise;
   return cached.conn;

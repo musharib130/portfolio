@@ -1,5 +1,4 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
-import { ITechnology } from "./Technology";
 
 export interface IProject extends Document {
   title: string;
