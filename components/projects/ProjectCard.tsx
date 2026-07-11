@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
     return (
-        <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(25%-1.125rem)] bg-card rounded-lg flex flex-col overflow-hidden transition-shadow hover:shadow-lg pt-3 sm:pt-4 px-3 sm:px-4">
+        <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(25%-1.125rem)] bg-yellow-50 rounded-lg flex flex-col overflow-hidden shadow-md pt-3 sm:pt-4 px-3 sm:px-4">
             <div className="relative w-full aspect-[2.4/1] sm:aspect-video rounded-md overflow-hidden">
                 {project.image ? (
                     <Image
