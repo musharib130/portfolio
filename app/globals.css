@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ededed;
     --foreground: #ededed;
   }
 }
@@ -24,4 +24,77 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   height: 100dvh;
+}
+
+/* Medieval-style paper texture for tabs and container */
+.paper-texture {
+    background-color: #fefcf7; /* base parchment color */
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,255,255,0.05) 0px,
+            rgba(255,255,255,0.05) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(0,0,0,0.02) 0px,
+            rgba(0,0,0,0.02) 1px,
+            transparent 1px,
+            transparent 2px
+        ),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.02), transparent 60%),
+        linear-gradient(120deg, rgba(255, 245, 220, 0.2) 0%, rgba(255, 240, 200, 0.2) 50%, rgba(245, 220, 180, 0.2) 100%);
+    background-size: cover;
+    border: 1px solid #d4b886; /* soft parchment border */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1); /* depth for worn effect */
+    border-radius: 0.75rem;
+}
+
+.bg-card {
+  background-color: #fefcf7;
+  background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 2px),
+      repeating-linear-gradient(-45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 2px),
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03), transparent 60%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.02), transparent 60%),
+      linear-gradient(120deg, rgba(255, 245, 220, 0.15) 0%, rgba(255, 240, 200, 0.15) 50%, rgba(245, 220, 180, 0.15) 100%);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.bg-dark-card {
+  background: linear-gradient(to bottom, #f3e0b3 0%, #d9b382 100%);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Thin dark brown scrollbars, no bulging thumb */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5c3a21 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #5c3a21;
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #4b2e1e;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
