@@ -27,44 +27,50 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-card border border-[#d4b886] rounded-lg max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 relative"
+                        className="bg-card border border-[#d4b886] rounded-lg max-w-lg w-full max-h-[85vh] flex flex-col gap-4 p-6 overflow-hidden"
                     >
-                        <button
-                            onClick={onClose}
-                            aria-label="Close"
-                            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#5c3a21] text-[#fefcf7] flex items-center justify-center hover:bg-[#4b2e1e] transition-colors cursor-pointer"
-                        >
-                            ✕
-                        </button>
+                        <div className="flex items-center justify-between gap-4 flex-shrink-0">
+                            <h2
+                                className="text-2xl font-bold text-[#4b2e1e]"
+                                style={{ fontFamily: "Cinzel, serif" }}
+                            >
+                                {project.title}
+                            </h2>
 
-                        <h2
-                            className="text-2xl font-bold text-[#4b2e1e] pr-10"
-                            style={{ fontFamily: "Cinzel, serif" }}
-                        >
-                            {project.title}
-                        </h2>
+                            <button
+                                onClick={onClose}
+                                aria-label="Close"
+                                className="w-8 h-8 flex-shrink-0 rounded-full bg-[#5c3a21] text-[#fefcf7] flex items-center justify-center hover:bg-[#4b2e1e] transition-colors cursor-pointer"
+                            >
+                                ✕
+                            </button>
+                        </div>
 
                         {project.image && (
-                            <div className="relative w-full aspect-video rounded overflow-hidden border border-[#d4b886] mt-4">
+                            <div className="relative w-full aspect-video rounded overflow-hidden flex-shrink-0">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    className="object-cover"
+                                    className="object-contain"
                                 />
                             </div>
                         )}
 
-                        <p className="mt-4 text-[#5c4a3a] whitespace-pre-line">
-                            {project.description}
-                        </p>
+                        <div className="overflow-y-auto flex-1 min-h-0">
+                            <ul className="space-y-2 text-[#5c4a3a] list-disc list-inside">
+                                {project.description.map((point, index) => (
+                                    <li key={index}>{point}</li>
+                                ))}
+                            </ul>
+                        </div>
 
                         {project.github && (
                             <a
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-[#4b2e1e] bg-gradient-to-b from-[#f3e0b3] to-[#d9b382] shadow-[inset_0_0_8px_rgba(0,0,0,0.15)] hover:brightness-105 transition"
+                                className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-[#4b2e1e] bg-gradient-to-b from-[#f3e0b3] to-[#d9b382] shadow-[inset_0_0_8px_rgba(0,0,0,0.15)] hover:brightness-105 transition"
                             >
                                 <FaGithub size={16} />
                                 View on GitHub

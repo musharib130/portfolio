@@ -68,3 +68,33 @@ body {
   background: linear-gradient(to bottom, #f3e0b3 0%, #d9b382 100%);
   box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
 }
+
+/* Thin dark brown scrollbars, no bulging thumb */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5c3a21 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #5c3a21;
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #4b2e1e;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}

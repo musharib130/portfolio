@@ -13,9 +13,9 @@ export default function Projects({ projects }: ProjectsProps) {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     return (
-        <div className="h-full flex flex-col overflow-hidden">
-            <h1 className="text-3xl font-bold mb-6 text-center flex-shrink-0">Projects</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto flex-1 min-h-0 items-start py-8">
+        <div style={{ paddingTop: '32px' }} className="h-full flex flex-col overflow-hidden">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center flex-shrink-0">Projects</h1>
+            <div className="flex flex-wrap gap-3 sm:gap-6 overflow-y-auto flex-1 min-h-0 items-start py-8">
                 {projects.map((project, index) => (
                     <ProjectCard
                         key={index}

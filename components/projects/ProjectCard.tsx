@@ -11,14 +11,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
     return (
-        <div className="bg-card rounded-lg flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
-            <div className="relative w-full aspect-video bg-[#f3e0b3]">
+        <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(25%-1.125rem)] bg-card rounded-lg flex flex-col overflow-hidden transition-shadow hover:shadow-lg pt-3 sm:pt-4 px-3 sm:px-4">
+            <div className="relative w-full aspect-[2.4/1] sm:aspect-video rounded-md overflow-hidden">
                 {project.image ? (
                     <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-[#a9835c] text-sm">
@@ -27,27 +27,26 @@ export default function ProjectCard({ project, onViewDetails }: ProjectCardProps
                 )}
             </div>
 
-            <div className="flex flex-col flex-1 p-4">
+            <div className="flex flex-col flex-1 py-3 sm:py-4">
                 <h2
-                    className="text-lg font-bold text-[#4b2e1e] truncate"
+                    className="text-lg font-bold text-[#4b2e1e] text-center"
                     style={{ fontFamily: "Cinzel, serif" }}
                 >
                     {project.title}
                 </h2>
-                <p className="mt-2 text-sm text-[#5c4a3a] line-clamp-3 flex-1">
-                    {project.description}
+                <p className="mt-3 sm:mt-4 text-sm text-[#5c4a3a] line-clamp-2 sm:line-clamp-3 flex-1">
+                    {project.description.join(" ")}
                 </p>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-2 sm:mt-4 flex items-center justify-between">
                     {project.github ? (
                         <a
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="View on GitHub"
-                            className="flex items-center justify-center w-8 h-8 rounded-full bg-[#5c3a21] text-[#fefcf7] hover:bg-[#4b2e1e] transition-colors"
+                            className="flex items-center"
                         >
-                            <FaGithub size={16} />
+                            <FaGithub className="h-6 w-6" />
                         </a>
                     ) : (
                         <span />
